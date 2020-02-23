@@ -11,37 +11,86 @@ let playing = true;
 
 // Karta
 
-function Card(suit, rank){
+
+function Card(suit,rank){
     this.suit = suit;
     this.rank = rank;
-    return "karta: "+this.rank+" "+this.suit;
-}
-
-//console.log(Card('Serce', 'Dwójka'));
-
-// Talia
-    
-let Deck = {
-    deck: [],
-    newDeck: function(){
-        for(let suit=0 ; suit < suits.length; suit++){
-            for(let rank=0 ; rank < ranks.length; rank++){
-            this.deck.push(Card(suits[suit], ranks[rank]));
-            }
-        }
-    },
-    sort: function(a){
-        var j, x, i;
-        for (i = a.length - 1; i > 0; i--) {
-            j = Math.floor(Math.random() * (i + 1));
-            x = a[i];
-            a[i] = a[j];
-            a[j] = x;
-        }
-    }
+    return [suit,rank];
 };
 
-Deck.newDeck();
-console.log(Deck.deck);
-Deck.sort(Deck.deck);
-console.log(Deck.deck);
+let card = new Card();
+
+
+function Deck() {
+    
+    this.deck = [];
+    for (let suit in suits) {
+        for (let rank in ranks) {
+            this.deck.push(Card(suits[suit], ranks[rank]));
+        }
+    }   
+}
+
+let deck = new Deck();
+
+function deal() {
+    let single_card = deck.deck.pop();
+    return single_card;
+}
+// class Deck {
+//     constructor() {
+//         this.deck = [];
+//         for (let suit in suits) {
+//             for (let rank in ranks) {
+//                 this.deck.push(Card(suits[suit], ranks[rank]));
+//             }
+//         }
+        
+//     }
+//     deal() {
+//         let single_card = this.deck.pop();
+//         return single_card;
+//     }
+// }
+
+
+    
+        cards = [];
+        value = 0
+        aces = 0
+    
+    
+
+
+
+
+function add_card(card){
+    cards.push(card);
+    console.log(card);
+    if (card[1] == 'King' || card[1] == 'Queen' || card[1] == 'Jack' ){
+        value += 10;
+    }else if(card[1] == 'Ace' && value > 11){
+        value +=1;
+    }else if(card[1] == 'Ace'){
+        value +=11;
+    }
+    
+    
+
+        
+}
+
+//
+
+
+
+console.log(deck.deck);
+
+console.log(deck.deck);
+
+add_card(deal());
+console.log(value+": WARTOŚĆ");
+console.log(cards);
+console.log(card.rank);
+
+
