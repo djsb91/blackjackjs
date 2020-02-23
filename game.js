@@ -11,7 +11,6 @@ let playing = true;
 
 // Karta
 
-
 function Card(suit,rank){
     this.suit = suit;
     this.rank = rank;
@@ -19,7 +18,6 @@ function Card(suit,rank){
 };
 
 let card = new Card();
-
 
 function Deck() {
     
@@ -33,36 +31,24 @@ function Deck() {
 
 let deck = new Deck();
 
+function shuffle() {
+    let m = deck.deck.length, i;
+
+    while (m) {
+    i = Math.floor(Math.random() * m--);
+
+    [deck.deck[m], deck.deck[i]] = [deck.deck[i], deck.deck[m]];
+    }
+}
+
 function deal() {
     let single_card = deck.deck.pop();
     return single_card;
 }
-// class Deck {
-//     constructor() {
-//         this.deck = [];
-//         for (let suit in suits) {
-//             for (let rank in ranks) {
-//                 this.deck.push(Card(suits[suit], ranks[rank]));
-//             }
-//         }
-        
-//     }
-//     deal() {
-//         let single_card = this.deck.pop();
-//         return single_card;
-//     }
-// }
 
-
-    
-        cards = [];
-        value = 0
-        aces = 0
-    
-    
-
-
-
+cards = [];
+value = 0
+aces = 0
 
 function add_card(card){
     cards.push(card);
@@ -73,22 +59,22 @@ function add_card(card){
         value +=1;
     }else if(card[1] == 'Ace'){
         value +=11;
+    }else{
+        value += values[card[1]];
     }
-    
-    
-
-        
+            
 }
 
 //
 
 
-
+console.log()
 console.log(deck.deck);
-
+shuffle()
 console.log(deck.deck);
 
 add_card(deal());
+
 console.log(value+": WARTOŚĆ");
 console.log(cards);
 console.log(card.rank);
