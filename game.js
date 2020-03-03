@@ -1,3 +1,5 @@
+// Suits, ranks and values
+
 const suits = ['Hearts', 'Diamonds', 'Spades', 'Clubs'];
 const ranks = ['Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace'];
 const values = {'Two': 2, 'Three': 3, 'Four': 4, 'Five': 5, 'Six': 6, 'Seven': 7, 'Eight': 8, 'Nine': 9, 'Ten': 10,
@@ -9,7 +11,7 @@ const values = {'Two': 2, 'Three': 3, 'Four': 4, 'Five': 5, 'Six': 6, 'Seven': 7
 
 let playing = true;
 
-// Karta
+// Card
 
 function Card(suit,rank){
     this.suit = suit;
@@ -18,6 +20,8 @@ function Card(suit,rank){
 };
 
 let card = new Card();
+
+// Deck
 
 function Deck() {
     
@@ -31,6 +35,8 @@ function Deck() {
 
 let deck = new Deck();
 
+// Shuffle function
+
 function shuffle() {
     let m = deck.deck.length, i;
 
@@ -41,6 +47,8 @@ function shuffle() {
     }
 }
 
+// Deal function
+
 function deal() {
     let single_card = deck.deck.pop();
     return single_card;
@@ -49,6 +57,8 @@ function deal() {
 let cards = [];
 let value = 0
 let aces = 0
+
+// Add card function
 
 function add_card(card){
     cards.push(card);
@@ -65,6 +75,8 @@ function add_card(card){
             
 }
 
+// Money and bet
+
 let total = 0;
 let bet = 0;
 
@@ -77,8 +89,6 @@ function lose_bet(){
 
 //
 
-
-console.log()
 console.log(deck.deck);
 shuffle()
 console.log(deck.deck);
@@ -89,11 +99,11 @@ console.log(deck.deck);
 // console.log(value+": WARTOŚĆ");
 console.log(cards);
 console.log(card.rank);
-const container = document.querySelector('.container');
+const container = document.querySelector('#player');
+// const container2 = document.querySelector('#container2');
 
-
-function napis(){
-    console.log("klikłeś");
+function deal_click(){
+    console.log("click!");
 };
 // function nowyDiv(){
 //     let itemBox = document.createElement('div');
@@ -115,15 +125,18 @@ let liczbaklikniec = 0;
 
 let start = function(){
     let dealButton = document.getElementById('deal');
-    dealButton.addEventListener('click', napis);
-    dealButton.addEventListener('click', przycisk);
-    
+    dealButton.addEventListener('click', deal_click);
+    dealButton.addEventListener('click', deal_start);
+    // let dealButton2 = document.getElementById('deal2');
+    // dealButton2.addEventListener('click', deal_click);
+    // dealButton2.addEventListener('click', przycisk2);
     
     
 };
-let przycisk = function(){
+let deal_start = function(){
     add_card(deal());
-    var btn = document.createElement("div"); 
+    var btn = document.createElement("div");
+    var val = document.createElement("div");
     btn.innerHTML = `
     
         <div class="top rank">` + valuess[cards[liczbaklikniec][1]] + `</div>
@@ -140,11 +153,42 @@ let przycisk = function(){
     }else{
         btn.classList.add('clubs');
     }
-    container.appendChild(btn);  
+
+    val.innerHTML = value;
+    val.classList.add('val');
+
+    container.appendChild(btn);
+    container.appendChild(val);   
+
+
     liczbaklikniec++;
     console.log(liczbaklikniec);
     console.log(value+": WARTOŚĆ");
+
 }
- 
+// let przycisk2 = function(){
+//     add_card(deal());
+//     var btn = document.createElement("div"); 
+//     btn.innerHTML = `
+    
+//         <div class="top rank">` + valuess[cards[liczbaklikniec][1]] + `</div>
+//         <div class="suit">` + htmlEntities[cards[liczbaklikniec][0]] + `</div>
+//         <div class="bottom rank">` + valuess[cards[liczbaklikniec][1]] + `</div>
+//     `
+//     btn.classList.add('card');
+//     if(cards[liczbaklikniec][0] == 'Hearts'){
+//         btn.classList.add('hearts');
+//     }else if(cards[liczbaklikniec][0] == 'Diamonds'){
+//         btn.classList.add('diamonds');
+//     }else if(cards[liczbaklikniec][0] == 'Spades'){
+//         btn.classList.add('spades');
+//     }else{
+//         btn.classList.add('clubs');
+//     }
+//     container2.appendChild(btn);  
+//     liczbaklikniec++;
+//     console.log(liczbaklikniec);
+//     console.log(value+": WARTOŚĆ");
+// }
 
 start();

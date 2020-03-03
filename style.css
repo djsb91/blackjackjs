@@ -14,7 +14,13 @@ body{
     justify-content: flex-start;
     height: 214px;
     position: relative;
-    width:100%;
+    width:98%;
+    border: solid 2px white;
+    margin: 10px;
+  }
+  h1{
+    color: white;
+    margin-left: 5px;
   }
   .card {
     font-family: 'Arbutus Slab', serif;
@@ -78,3 +84,7 @@ body{
     font-size: 60px;
   }
   
+  .val{
+    color: white;
+    font-size: large;
+  }
